@@ -97,7 +97,7 @@ public class ShortenerController : DI_BaseController
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id,  UrlShortener urlShortener)
+    public async Task<IActionResult> Edit(int id, UrlShortener urlShortener)
     {
         if (id != urlShortener.Id)
         {
@@ -108,9 +108,9 @@ public class ShortenerController : DI_BaseController
         {
             if (User.IsInRole(Constants.ShortenerAdministratorRole))
             {
-                urlShortener.CreatorId = Context.UrlShortener.Where(x=>x.CreatedBy == urlShortener.CreatedBy)
+                urlShortener.CreatorId = Context.UrlShortener.Where(x => x.CreatedBy == urlShortener.CreatedBy)
                                                 .Select(x => x.CreatorId).First();
-               
+
             }
             else
             {
@@ -120,9 +120,19 @@ public class ShortenerController : DI_BaseController
                                                 .Select(x => x.CreatedBy).First();
                 urlShortener.CreatedDate = Context.UrlShortener.Where(x => x.Id == urlShortener.Id)
                                                 .Select(x => x.CreatedDate).First();
+            } 
+
+            if (Context.UrlShortener.Where(x => x.LongUrl == urlShortener.LongUrl).FirstOrDefault() == null)
+                urlShortener.ShortUrl = Shorten(urlShortener.LongUrl);
+            else
+            {
+                urlShortener.LongUrl = Context.UrlShortener.Where(x=>x.Id == urlShortener.Id)
+                                                .Select(x=>x.LongUrl).First();
+
+                urlShortener.ShortUrl = Context.UrlShortener.Where(x => x.Id == urlShortener.Id)
+                                                .Select(x => x.ShortUrl).First();
             }
 
-            urlShortener.ShortUrl = Shorten(urlShortener.LongUrl);
             Context.Update(urlShortener);
             await Context.SaveChangesAsync();
         }
