@@ -45,8 +45,8 @@ using (var scope = app.Services.CreateScope())
     context.Database.Migrate();
 
     //manage user secrets
-    var seedUserPass = builder.Configuration.GetValue<string>("SeedUserPass");
-    await SeedData.Initialize(services, seedUserPass);
+    var seedAdminPass = builder.Configuration.GetValue<string>("SeedAdminPass");
+    await SeedData.Initialize(services, seedAdminPass);
 }
 
 // Configure the HTTP request pipeline.
