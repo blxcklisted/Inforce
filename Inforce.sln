@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inforce", "Inforce\Inforce.csproj", "{65194440-6347-4FFF-A945-89A705B0D9AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortenerControllerTest", "ShortenerControllerTest\ShortenerControllerTest.csproj", "{FF113139-BFF7-48CF-8FFB-653B1B6F30E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65194440-6347-4FFF-A945-89A705B0D9AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65194440-6347-4FFF-A945-89A705B0D9AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65194440-6347-4FFF-A945-89A705B0D9AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65194440-6347-4FFF-A945-89A705B0D9AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF113139-BFF7-48CF-8FFB-653B1B6F30E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF113139-BFF7-48CF-8FFB-653B1B6F30E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF113139-BFF7-48CF-8FFB-653B1B6F30E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF113139-BFF7-48CF-8FFB-653B1B6F30E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3ABBEB0-009A-4DBC-BA90-90946CF6329F}
+	EndGlobalSection
+EndGlobal

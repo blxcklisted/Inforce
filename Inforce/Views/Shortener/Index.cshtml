@@ -1,0 +1,120 @@
+﻿@using Inforce.Authorization
+@model IEnumerable<Inforce.Models.UrlShortener>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>URL SHORTENER</h1>
+
+@{
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        <p>
+            <a class="btn btn-primary" asp-action="Create">Add new URL</a>
+        </p>
+    }
+}
+
+@{
+    @if (ViewContext.HttpContext.User.IsInRole(Constants.ShortenerAdministratorRole))
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LongUrl)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShortUrl)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedBy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedDate)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td width="300px">
+                            <a href="@item.LongUrl" target="_blank">@Html.DisplayFor(modelItem => item.LongUrl)</a>
+                        </td>
+                        <td>
+                            <a href="@item.ShortUrl" target="_blank">@Html.DisplayFor(modelItem => item.ShortUrl)</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedBy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedDate)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">URL Info</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LongUrl)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShortUrl)
+                    </th>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <th>
+                            Actions
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a href="@item.LongUrl" target="_blank">@Html.DisplayFor(modelItem => item.LongUrl)</a>
+                        </td>
+                        <td>
+                            <a href="@item.ShortUrl" target="_blank">@Html.DisplayFor(modelItem => item.ShortUrl)</a>
+                        </td>
+
+                        @{
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.Id">URL Info</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>
+                            }
+                        }
+                        <th></th>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+
+
+
